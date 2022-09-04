@@ -4,6 +4,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 // eslint-disable-next-line node/no-missing-import
 import { QueueMock } from "../typechain";
+import { loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 
 const Uint256QueueMock = "Uint256QueueMock";
 

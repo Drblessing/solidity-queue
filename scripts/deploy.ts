@@ -17,10 +17,17 @@ const main = async () => {
   const QueueConsumer = await ethers.getContractFactory("QueueConsumer");
   const queueConsumer = await QueueConsumer.deploy();
 
-  await queueConsumer.deployed();
+  // await queueConsumer.deployed();
+  await queueConsumer.deployTransaction.wait(5);
 
   console.log("QueueConsumer deployed to:", queueConsumer.address);
-}
+
+  await hre.run("verify:verify", {
+    network: "ropsten",
+    contract: "contracts/QueueConsumer.sol:QueueConsumer",
+    address: queueConsumer.address,
+  });
+};
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
